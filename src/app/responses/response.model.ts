@@ -1,11 +1,11 @@
-import { Deserializable } from './deserializable.model';
+import { Deserializable } from '../models/deserializable.model';
 
-export class FearModel implements Deserializable {
+export class ResponseModel implements Deserializable {
     id: number;
     representative: string;
     answer: string;
-    long: number;
     lat: number;
+    long: number;
 
     deserialize(data: any): this {
         Object.assign(this, data);

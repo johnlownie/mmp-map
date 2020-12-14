@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { RepresentativeModel } from 'src/app/models/representative.model';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { DataService } from '../../services/data.service';
+import { SearchModel } from 'src/app/home/search/search.model';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,10 +12,10 @@ import { DataService } from '../../services/data.service';
 export class SearchComponent implements OnInit {
 
   searchForm: FormGroup;
-  representative: RepresentativeModel = new RepresentativeModel();
+  representative: SearchModel = new SearchModel();
   hideCard: boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) {
+  constructor(private formBuilder: FormBuilder, private searchService: SearchService) {
     // let postalCodePattern = "^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$";
     let postalCodePattern = "^[A-Za-z][0-9][A-Za-z][ -]?[0-9][A-Za-z][0-9]$";
     this.searchForm = formBuilder.group({
@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
 
     let postalCode = this.searchForm.value.postalCode.replace(/\s/g,'');
     
-    this.dataService.getRepresentative(postalCode).subscribe(data => {
+    this.searchService.getRepresentative(postalCode).subscribe(data => {
       if (data !== undefined) {
         this.representative = data;
         this.hideCard = false;
@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit {
   }
 
   onReset() {
-    this.representative = new RepresentativeModel();
+    this.representative = new SearchModel();
     this.hideCard = true;
     this.searchForm.reset();
   }

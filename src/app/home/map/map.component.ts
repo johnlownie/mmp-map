@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { icon, Marker } from 'leaflet';
 
-import { FearModel } from 'src/app/models/fear.model';
-import { DataService } from 'src/app/services/data.service';
+import { ResponseModel } from 'src/app/responses/response.model'; 
+import { ResponseService } from 'src/app/responses/response.service'; 
 
 @Component({
   selector: 'app-map',
@@ -13,16 +13,16 @@ import { DataService } from 'src/app/services/data.service';
 export class MapComponent implements OnInit, AfterViewInit {
 
   private map;
-  private fears: FearModel[];
+  private responses: ResponseModel[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private responseService: ResponseService) { }
 
   ngOnInit(): void {
     this.setMapIcon();
 
-    this.dataService.getFears().subscribe(data => {
-      this.fears = data;
-      this.addFearsToMap();
+    this.responseService.getResponses().subscribe(data => {
+      this.responses = data;
+      this.addResponsesToMap();
     });
   }
 
@@ -44,11 +44,11 @@ export class MapComponent implements OnInit, AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  private addFearsToMap(): void {
-    this.fears.forEach((fear) => {
-      console.log("Setting marker at " + fear.long + " - " + fear.lat);
-      let marker = L.marker([fear.long, fear.lat]).addTo(this.map);
-      marker.bindPopup("<b>Dear " + fear.representative + "</b><br/>" + fear.answer);
+  private addResponsesToMap(): void {
+    this.responses.forEach((response) => {
+      console.log("Setting marker at " + response.lat + " - " + response.long);
+      let marker = L.marker([response.lat, response.long]).addTo(this.map);
+      marker.bindPopup("<b>Dear " + response.representative + "</b><br/>" + response.answer);
     });
   }
 

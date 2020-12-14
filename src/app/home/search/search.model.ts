@@ -1,6 +1,6 @@
-import { Deserializable } from './deserializable.model';
+import { Deserializable } from '../../models/deserializable.model';
 
-export class RepresentativeModel implements Deserializable {
+export class SearchModel implements Deserializable {
     name: string;
     email: string;
     image: string;
@@ -18,8 +18,8 @@ export class RepresentativeModel implements Deserializable {
             this.image = representative[0].photo_url;
             this.party = representative[0].party_name;
             this.district = representative[0].district_name;
-            this.long = data.centroid.coordinates[0];
-            this.lat = data.centroid.coordinates[1];
+            this.lat = data.centroid.coordinates[0];
+            this.long = data.centroid.coordinates[1];
 
             console.log(this);
         }

@@ -5,22 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import { MapComponent } from './components/map/map.component';
-import { SearchComponent } from './components/search/search.component';
 
-import { DataService } from './services/data.service';
-import { FearComponent } from './components/fear/fear.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeModule } from './home/home.module';
+import { ResponsesModule } from './responses/responses.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
-    SearchComponent,
-    FearComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +20,10 @@ import { HomeComponent } from './components/home/home.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ResponsesModule,
+    HomeModule
   ],
-  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { FearComponent } from './components/fear/fear.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent}
+  { path: 'responses', loadChildren: () => import('./responses/responses.module').then(m => m.ResponsesModule) },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,32 @@
+<h5>Locate your MPP</h5>
+
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="form-group input-group">
+        <input class="form-control" type="text" placeholder="N0N 0N0" formControlName="postalCode" oninput="this.value = this.value.toUpperCase()" autofocus>
+
+        <span class="input-group-btn px-2">
+            <button type="submit" class="btn btn-md btn-primary" [disabled]="!searchForm.valid">Search</button>
+        </span>
+    </div>
+</form>
+
+<div class="card mt-2" [hidden]="hideCard">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img [src]="representative.image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ representative.name }}</h5>
+                <p class="card-text">
+                    <span class="small">{{ representative.email }}</span><br/>
+                    {{ representative.party }}<br/>
+                    {{ representative.district }}
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-md btn-danger" target="_blank" (click)="onReset()" href="https://docs.google.com/forms/d/e/1FAIpQLSfWi4PTaCqFBh5Ly_j5HPQ55yKqyjAb1M-6oxw9O1YAM_cE1A/viewform?usp=sf_link">Participate</a>
+            </div>
+        </div>
+    </div>
+</div>

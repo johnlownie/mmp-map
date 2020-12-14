@@ -1,0 +1,42 @@
+<div class="col-md-6">
+    <h2>Fear Details</h2>
+
+    <table class="table table-striped">
+        <thead><tr><th class="hidden">Id</th><th>Representative</th><th>Answer</th><th>Longitude</th><th>Latitude</th><th>Actions</th></tr></thead>
+        <tbody>
+            <tr *ngFor="let fear of fears">
+                <td class="hidden">{{ fear.id }}</td>
+                <td>{{ fear.representative }}</td>
+                <td>{{ fear.answer }}</td>
+                <td>{{ fear.long }}</td>
+                <td>{{ fear.lat }}</td>
+                <td>
+                    <button class="btn btn-default" (click)="editUser(fear)"><i class="fas fa-edit text-info"></i></button>
+                    <button class="btn btn-default" (click)="deleteFear(fear)"><i class="far fa-trash-alt text-danger"></i></button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot><button class="btn btn-primary mt-2" (click)="addFear()">Add Fear</button></tfoot>
+    </table>
+
+    <hr/>
+
+    <form>
+        <div class="form-group">
+            <label for="representative">Representative</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="answer">Answer</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="longitude">Longitute</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="text" class="form-control">
+        </div>
+    </form>
+</div>
